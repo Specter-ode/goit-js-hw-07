@@ -26,30 +26,27 @@ function onGalleryContainerClick(event) {
     if (event.target.nodeName !== 'IMG') {
         return;
     }
-
+    
     const instance = basicLightbox.create(
         `<img src="${event.target.dataset.source}">`,
         {
-            onShow: function () {
-                const newActiveBlock = event.target;
-                newActiveBlock.classList.add("is-open");
+            onShow: function () { 
+                window.addEventListener("keydown", checkKeyEvent)
             },
-
             onClose: function () {
-                const currentActiveImage = document.querySelector(".gallery__image.is-open");
-                currentActiveImage?.classList.remove("is-open");
+                window.removeEventListener("keydown", checkKeyEvent)
             }
         }
     )
+    instance.show()
 
-    window.addEventListener("keydown", function (event) {
+    function checkKeyEvent (event) {
+        console.log(event.code)
         if (event.code === "Escape") {
             instance.close();
         }
-    })
-    
-    instance.show()
     }
+}
 
 
 
