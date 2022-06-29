@@ -36,7 +36,6 @@ function onGalleryContainerClick(event) {
             },
 
             onClose: function () {
-                event.preventDefault();
                 const currentActiveImage = document.querySelector(".gallery__image.is-open");
                 currentActiveImage?.classList.remove("is-open");
             }
@@ -51,8 +50,6 @@ function onGalleryContainerClick(event) {
     
     instance.show()
     }
-
-// finish
 
 
 
